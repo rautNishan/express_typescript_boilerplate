@@ -14,8 +14,6 @@ export class AppInit {
     this.app = options.app;
     this.port = options.port;
 
-    this.initializeStaticContent();
-
     this.initializeMiddlewares(options.beforeRouteMiddlewares);
 
     this.initializeRoutes(options.routes);
@@ -36,10 +34,8 @@ export class AppInit {
     });
   }
 
-  private initializeStaticContent() {
-    this.app.use(
-      "/blogs",
-      express.static(path.join(__dirname, "/public/blogs"))
-    );
-  }
+  //For Static content
+  // private initializeStaticContent() {
+  //   this.app.use();
+  // }
 }
