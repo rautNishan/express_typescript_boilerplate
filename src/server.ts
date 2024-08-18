@@ -5,13 +5,13 @@ import cors from "cors";
 import { DBConnection } from "./common/database/connection/database.connection";
 import { ResponseInterCeptor } from "./common/response/interceptors/response.interceptor";
 import { GlobalExceptionFilter } from "./common/response/errors/global.filter.error";
+import { adminRouterFactory } from "./routes/admin.route";
+import { userRouterFactory } from "./routes/user.route";
 
 export async function main() {
   try {
     const app: Express = express();
     const port: number = 3000;
-
-    console.log("Initializing DataBae....");
 
     await DBConnection.connection().then(() => {
       app.listen(port, () => {
@@ -23,7 +23,10 @@ export async function main() {
       app: app,
       port: port,
       beforeRouteMiddlewares: [cors(), express.json(), ResponseInterCeptor],
-      routes: [],
+      routes: [
+        { routeName: "/admin", router: adminRouterFactory() },
+        { routeName: "/user", router: userRouterFactory() },
+      ],
       afterRouteMiddleWares: [GlobalExceptionFilter],
     });
   } catch (err) {

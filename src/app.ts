@@ -9,8 +9,6 @@ export class AppInit {
   private port: number;
 
   constructor(options: IAppOptions) {
-    console.log("The App is Being Initialize.....");
-
     this.app = options.app;
     this.port = options.port;
 
