@@ -36,7 +36,6 @@ export class UserController {
     }
   }
 
-  //Accept pagination query
   async getAll(options?: RequestListQueryDto) {
     const data = await this._userService.getAll({
       options: {

@@ -8,15 +8,21 @@ export class AppInit {
 
   private port: number;
 
+  private host: string;
   constructor(options: IAppOptions) {
     this.app = options.app;
     this.port = options.port;
+    this.host = options.host;
 
     this.initializeMiddlewares(options.beforeRouteMiddlewares);
 
     this.initializeRoutes(options.routes);
 
     this.initializeMiddlewares(options.afterRouteMiddleWares);
+
+    this.app.listen(this.port, this.host, () => {
+      console.log(`Listing to port ${this.port} and host ${this.host}`);
+    });
   }
 
   private initializeMiddlewares(middlewares?: any[]) {

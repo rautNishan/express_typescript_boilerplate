@@ -1,7 +1,7 @@
-import { SwaggerOptions } from "swagger-ui-express";
 import { Express } from "express";
-import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi, { SwaggerOptions } from "swagger-ui-express";
+import { userDocApis } from "./common/docs/user.doc";
 
 export function initializeSwaggerOptions(app: Express) {
   const swaggerAdminOptions: SwaggerOptions = {
@@ -27,7 +27,7 @@ export function initializeSwaggerOptions(app: Express) {
         description: "User API Documentation",
       },
     },
-    apis: ["./src/routes/user.route.ts","./src/modules/users/docs/user.doc.ts"],
+    apis: ["./src/routes/user.route.ts"]
   };
   const userSwaggerSpec = swaggerJsdoc(swaggerUserOptions);
   app.use("/user-docs", swaggerUi.serve, swaggerUi.setup(userSwaggerSpec));

@@ -1,14 +1,15 @@
 import express, { Request, Response, Router } from "express";
-import { AuthUserController } from "../modules/auth/controllers/auth.user.controller";
+import { HttpStatusCode } from "../common/constants/http.status.code.constant";
+import { ValidationException } from "../common/exceptions/validation.exception";
 import { RequestBodyValidation } from "../common/request/validator/request.body.validator";
+import { AuthUserController } from "../modules/auth/controllers/auth.user.controller";
 import { UserLoginDto } from "../modules/auth/dtos/user.login.dto";
 import { asyncHandler } from "../utils/async.handler";
-import { ValidationException } from "../common/exceptions/validation.exception";
-import { HttpStatusCode } from "../common/constants/http.status.code.constant";
+import { UserLoginDoc } from "../modules/auth/docs/auth.user.doc";
 import { UserController } from "../modules/users/controllers/user.controller";
+import { UserCreateDto } from "../modules/users/dtos/user.create.dto";
 import { UserProtectedGuard } from "../common/request/guards/authenticated.user";
 import { REQUEST_META } from "../common/request/constants/request.constant";
-import { UserCreateDto } from "../modules/users/dtos/user.create.dto";
 import { RequestQueryValidator } from "../common/request/validator/request.query.validator";
 import { RequestListQueryDto } from "../common/request/dtos/query/request.list.query.dto";
 import { RESPONSE_META } from "../common/response/constants/response.constant";
@@ -23,14 +24,13 @@ import { RESPONSE_META } from "../common/response/constants/response.constant";
 //     return this.userRouter;
 //   }
 
-//   @ApiUser("User")
+//   @UserLoginDoc()
 //   public static login(path: string) {
 //     const authUserController: AuthUserController = new AuthUserController();
 //     return this.userRouter.post(
 //       path,
 //       RequestBodyValidation(UserLoginDto),
 //       asyncHandler(async (req: Request, res: Response) => {
-//         console.log("This is Request: ");
 //         const { email, userName } = req.body;
 //         if (!email && !userName) {
 //           throw new ValidationException(
