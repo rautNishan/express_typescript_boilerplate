@@ -7,7 +7,13 @@
     "build": "tsc",
     "start": "node ./dist/server.js",
     "clean": "powershell -Command \"if (Test-Path .\\dist) { Remove-Item -Recurse -Force .\\dist }\"",
-    "start:dev": "npm run clean && npm run build && nodemon ./src/server.ts"
+    "start:dev": "npm run clean && npm run build && nodemon ./src/server.ts",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "migration:create": "npm run typeorm migration:create",
+    "seed:admin": "ts-node -r tsconfig-paths/register ./src/common/database/seeds/admin/admin.seed.ts",
+    "migration:generate": "npm run typeorm -- --dataSource=./src/common/database/data-source/app.data-source.ts migration:generate",
+    "migration:run": "npm run typeorm -- --dataSource=./src/common/database/data-source/app.data-source.ts migration:run",
+    "migration:revert": "npm run typeorm -- --dataSource=./src/common/database/data-source/app.data-source.ts migration:revert"
   },
   "keywords": [],
   "author": "",
@@ -19,11 +25,14 @@
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^22.4.0",
+    "@types/pg": "^8.11.6",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "nodemon": "^3.1.4",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@types/pg": "^8.11.6",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -32,6 +41,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.12.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "ts-node": "^10.9.2",
     "typeorm": "^0.3.20"
   }

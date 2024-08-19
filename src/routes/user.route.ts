@@ -13,6 +13,38 @@ import { RequestQueryValidator } from "../common/request/validator/request.query
 import { RequestListQueryDto } from "../common/request/dtos/query/request.list.query.dto";
 import { RESPONSE_META } from "../common/response/constants/response.constant";
 
+// export class UserRouterFactory {
+//   constructor() {}
+
+//   static userRouter: Router = express.Router();
+
+//   public static getUserRouter(): Router {
+//     this.login("/auth/login");
+//     return this.userRouter;
+//   }
+
+//   @ApiUser("User")
+//   public static login(path: string) {
+//     const authUserController: AuthUserController = new AuthUserController();
+//     return this.userRouter.post(
+//       path,
+//       RequestBodyValidation(UserLoginDto),
+//       asyncHandler(async (req: Request, res: Response) => {
+//         console.log("This is Request: ");
+//         const { email, userName } = req.body;
+//         if (!email && !userName) {
+//           throw new ValidationException(
+//             HttpStatusCode.UNPROCESSABLE_ENTITY,
+//             "At least one email or username is required."
+//           );
+//         }
+//         const data = await authUserController.login(req.body);
+//         res.json(data);
+//       })
+//     );
+//   }
+// }
+
 export function userRouterFactory(): Router {
   const userRouter: Router = express.Router();
 

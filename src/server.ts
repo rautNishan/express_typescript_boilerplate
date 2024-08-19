@@ -3,10 +3,11 @@ import { AppInit } from "./app";
 
 import cors from "cors";
 import { DBConnection } from "./common/database/connection/database.connection";
-import { ResponseInterCeptor } from "./common/response/interceptors/response.interceptor";
 import { GlobalExceptionFilter } from "./common/response/errors/global.filter.error";
+import { ResponseInterCeptor } from "./common/response/interceptors/response.interceptor";
 import { adminRouterFactory } from "./routes/admin.route";
 import { userRouterFactory } from "./routes/user.route";
+import { initializeSwaggerOptions } from "./swagger";
 
 export async function main() {
   try {
@@ -29,6 +30,9 @@ export async function main() {
       ],
       afterRouteMiddleWares: [GlobalExceptionFilter],
     });
+
+    //Swagger
+    initializeSwaggerOptions(app);
   } catch (err) {
     console.log("This is Error in Server: ", err);
     throw err;
