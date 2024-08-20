@@ -27,7 +27,7 @@ export function initializeSwaggerOptions(app: Express) {
         description: "User API Documentation",
       },
     },
-    apis: ["./src/routes/user.route.ts"]
+    apis: userDocApis
   };
   const userSwaggerSpec = swaggerJsdoc(swaggerUserOptions);
   app.use("/user-docs", swaggerUi.serve, swaggerUi.setup(userSwaggerSpec));

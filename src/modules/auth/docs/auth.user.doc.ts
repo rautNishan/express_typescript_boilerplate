@@ -8,7 +8,7 @@ export function UserLoginDoc() {
     descriptor.value = function (...args: any[]) {
       /**
        * @swagger
-       * /auth/login:
+       * /user/auth/login:
        *   post:
        *     tags:
        *       - Authentication

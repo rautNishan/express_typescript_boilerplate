@@ -7,7 +7,7 @@ import { DBConnection } from "./common/database/connection/database.connection";
 import { GlobalExceptionFilter } from "./common/response/errors/global.filter.error";
 import { ResponseInterCeptor } from "./common/response/interceptors/response.interceptor";
 import { adminRouterFactory } from "./routes/admin.route";
-import { userRouterFactory } from "./routes/user.route";
+import { UserIndexRoute } from "./routes/user/user.index.route";
 import { initializeSwaggerOptions } from "./swagger";
 
 export async function main() {
@@ -25,7 +25,7 @@ export async function main() {
       beforeRouteMiddlewares: [cors(), express.json(), ResponseInterCeptor],
       routes: [
         { routeName: "/admin", router: adminRouterFactory() },
-        { routeName: "/user", router: userRouterFactory() },
+        { routeName: "/user", router: UserIndexRoute.getUserRouter() },
       ],
       afterRouteMiddleWares: [GlobalExceptionFilter],
     });
