@@ -4,9 +4,6 @@ import { RequestBodyValidation } from "../common/request/validator/request.body.
 import { UserCreateDto } from "../modules/users/dtos/user.create.dto";
 import { asyncHandler } from "../utils/async.handler";
 
-import { RequestParamValidator } from "../common/request/validator/request.param.validator";
-import { RequestQueryValidator } from "../common/request/validator/request.query.validator";
-import { RESPONSE_META } from "../common/response/constants/response.constant";
 import { AuthAdminController } from "../modules/auth/controllers/auth.admin.controller";
 import { UserLoginDto } from "../modules/auth/dtos/user.login.dto";
 import { UserAdminController } from "../modules/users/controllers/user.admin.controller";

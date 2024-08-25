@@ -1,7 +1,7 @@
 import { Express } from "express";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi, { SwaggerOptions } from "swagger-ui-express";
-import { userDocApis } from "./common/docs/user.doc";
+import { returnUserApiDocs } from "./common/docs/user.doc";
 
 export function initializeSwaggerOptions(app: Express) {
   const swaggerAdminOptions: SwaggerOptions = {
@@ -16,8 +16,9 @@ export function initializeSwaggerOptions(app: Express) {
     apis: ["./src/routes/admin.route.ts"],
   };
   const adminSwaggerSpec = swaggerJsdoc(swaggerAdminOptions);
-  app.use("/admin-docs", swaggerUi.serve, swaggerUi.setup(adminSwaggerSpec));
+  app.use("/admin-docs", swaggerUi.serveFiles(adminSwaggerSpec), swaggerUi.setup(adminSwaggerSpec));
 
+  const userDocApis = returnUserApiDocs();
   const swaggerUserOptions: SwaggerOptions = {
     definition: {
       openapi: "3.0.0",
@@ -27,8 +28,8 @@ export function initializeSwaggerOptions(app: Express) {
         description: "User API Documentation",
       },
     },
-    apis: userDocApis
+    apis: userDocApis,
   };
   const userSwaggerSpec = swaggerJsdoc(swaggerUserOptions);
-  app.use("/user-docs", swaggerUi.serve, swaggerUi.setup(userSwaggerSpec));
+  app.use("/user-docs", swaggerUi.serveFiles(userSwaggerSpec), swaggerUi.setup(userSwaggerSpec));
 }

@@ -1,6 +1,5 @@
-import express, { Express } from "express";
+import { Express } from "express";
 
-import path from "path";
 import { IAppOptions } from "./common/interfaces/app.interface";
 import { ICustomRouter } from "./common/interfaces/router.interface";
 export class AppInit {
