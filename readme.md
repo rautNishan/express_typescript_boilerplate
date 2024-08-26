@@ -27,9 +27,9 @@ $ npm run start:dev
 
 ### Swagger Docs
 
-*** Admin Docs: http://localhost:3000/admin-docs ***
+#### Admin Docs: http://localhost:3000/admin-docs 
 
-*** User Docs: http://localhost:3000/user-docs ***
+#### User Docs: http://localhost:3000/user-docs
 
 # Migrations
 
