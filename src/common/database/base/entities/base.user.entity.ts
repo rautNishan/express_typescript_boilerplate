@@ -1,7 +1,7 @@
 import { Column } from "typeorm";
-import { DataBaseBaseEntity } from "./base.entity";
 import { USER_ROLE } from "../../../constants/roles.constant";
 import { IBaseUser } from "../../interfaces/database.interface";
+import { DataBaseBaseEntity } from "./base.entity";
 
 export class BaseUserEntity extends DataBaseBaseEntity implements IBaseUser {
   @Column({
@@ -24,7 +24,6 @@ export class BaseUserEntity extends DataBaseBaseEntity implements IBaseUser {
     type: "text",
     unique: true,
     name: "user_name",
-    length: 250,
     nullable: false,
   })
   userName: string;

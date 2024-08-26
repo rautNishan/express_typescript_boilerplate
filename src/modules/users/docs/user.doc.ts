@@ -42,11 +42,6 @@ export function UserRegisterDoc() {
        *         content:
        *           application/json:
        *             schema:
-       *               type: object
-       *               properties:
-       *                 token:
-       *                   type: string
-       *                   description: JWT token for accessing protected routes
        *                 user:
        *                   type: object
        *                   properties:
