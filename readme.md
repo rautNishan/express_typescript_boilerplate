@@ -54,3 +54,4 @@ $ npm run seed:admin
 # Todo
 ### [ ] Task 1: Update swagger documentation
 ### [ ] Task 2: Proper file naming convention 
+### [ ] Task 2: Complete this boilerplate
