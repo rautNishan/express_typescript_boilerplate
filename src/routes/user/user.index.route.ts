@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from "express";
+import express, { Router } from "express";
 import { UserAuthRoute } from "./router/user.auth.route";
 import { UserSelfRoute } from "./router/user.route";
 
@@ -7,10 +7,10 @@ export class UserIndexRoute {
 
   public static getUserRouter(): Router {
     //Auth Route
-    this.userRouter = UserAuthRoute.getUserAuthRouter();
-    this.userRouter = UserSelfRoute.getUserSelfRouter();
+    UserIndexRoute.userRouter = UserAuthRoute.getUserAuthRouter();
+    UserIndexRoute.userRouter = UserSelfRoute.getUserSelfRouter();
 
     //User Route
-    return this.userRouter;
+    return UserIndexRoute.userRouter;
   }
 }

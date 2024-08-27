@@ -1,16 +1,15 @@
 import express, { Request, Response, Router } from "express";
+import { RequestListQueryDto } from "../../../common/request/dtos/query/request.list.query.dto";
 import { RequestBodyValidation } from "../../../common/request/validator/request.body.validator";
-import { UserLoginDoc } from "../../../modules/auth/docs/auth.user.doc";
+import { RequestQueryValidator } from "../../../common/request/validator/request.query.validator";
+import { RESPONSE_META } from "../../../common/response/constants/response.constant";
 import { UserController } from "../../../modules/users/controllers/user.controller";
-import { UserCreateDto } from "../../../modules/users/dtos/user.create.dto";
-import { asyncHandler } from "../../../utils/async.handler";
 import {
   UserListDoc,
   UserRegisterDoc,
-} from "../../../modules/users/docs/user.doc";
-import { RequestQueryValidator } from "../../../common/request/validator/request.query.validator";
-import { RequestListQueryDto } from "../../../common/request/dtos/query/request.list.query.dto";
-import { RESPONSE_META } from "../../../common/response/constants/response.constant";
+} from "../../../modules/users/docs/user/user.doc";
+import { UserCreateDto } from "../../../modules/users/dtos/user.create.dto";
+import { asyncHandler } from "../../../utils/async.handler";
 
 export class UserSelfRoute {
   constructor() {}
@@ -18,9 +17,9 @@ export class UserSelfRoute {
   static userRouter: Router = express.Router();
 
   public static getUserSelfRouter(): Router {
-    this.register("/register");
-    this.list("/list");
-    return this.userRouter;
+    UserSelfRoute.register("/register");
+    UserSelfRoute.list("/list");
+    return UserSelfRoute.userRouter;
   }
 
   @UserRegisterDoc()
